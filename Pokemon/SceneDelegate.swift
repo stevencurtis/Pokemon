@@ -16,15 +16,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
+        let searchNavigationController = UINavigationController()
         
-        let searchViewModel = SearchViewModel()
-        let searchViewController = SearchViewController(viewModel: searchViewModel)
-        
-        let searchNavigationController = UINavigationController(rootViewController: searchViewController)
+        var searchFlow: SearchFlow?
 
+        searchFlow = SearchFlow(
+            router: FlowRoutingService(
+                navigationController: searchNavigationController
+            )
+        )
         
         window?.rootViewController = searchNavigationController
         window?.makeKeyAndVisible()
+        
+        searchFlow?.runFlow()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

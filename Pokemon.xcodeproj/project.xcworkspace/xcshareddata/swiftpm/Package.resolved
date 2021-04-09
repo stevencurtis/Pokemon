@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "NetworkLibrary",
+        "repositoryURL": "https://github.com/stevencurtis/NetworkManager",
+        "state": {
+          "branch": null,
+          "revision": "acc2a3eee4392c73cd31be6293e5532e5256c53a",
+          "version": "0.2.1"
+        }
+      },
+      {
+        "package": "SDWebImage",
+        "repositoryURL": "https://github.com/SDWebImage/SDWebImage",
+        "state": {
+          "branch": null,
+          "revision": "d1c75d839709b3f91c82ecf7d3c7665272090456",
+          "version": "5.11.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

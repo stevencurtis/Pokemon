@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "78B55937-484E-4A31-9E26-357BB436E197"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4782345E-64D4-4AFE-8F06-AA991174DB54"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pokemon/CoreData/DataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "save(pokemon:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4782345E-64D4-4AFE-8F06-AA991174DB54 - 46158a397fbd99cb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Pokemon.DataManager.save(pokemon: Pokemon.PokemonDetailStoreDto) -&gt; ()"
+                  moduleName = "Pokemon"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/stevencurtis/Documents/Jobs2016/Developer/CV%202020/Applications/threesidedcube/3SCiOSTask/Pokemon/Pokemon/CoreData/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "90">
+               </Location>
+               <Location
+                  uuid = "4782345E-64D4-4AFE-8F06-AA991174DB54 - 7c078a905aff7c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Pokemon.DataManager.save(pokemon: Pokemon.PokemonDetailStoreDto) -&gt; ()"
+                  moduleName = "Pokemon"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/stevencurtis/Documents/Jobs2016/Developer/CV%202020/Applications/threesidedcube/3SCiOSTask/Pokemon/Pokemon/CoreData/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "115">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8B4FF0B0-9873-4A38-AAED-831845FB9113"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pokemon/CoreData/DataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "save(pokemon:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "49C6E995-DB10-4D15-B5A7-07865C376557"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pokemon/CoreData/DataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "save(pokemon:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8C452DBE-F8D5-43A6-B03F-89330B5D2A14"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pokemon/CoreData/DataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "saveContext(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9B415839-E8B4-4858-8997-41EE2C58A110"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pokemon/CoreData/DataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "saveContext(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9B415839-E8B4-4858-8997-41EE2C58A110 - 66ec5de9bf748471"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Pokemon.DataManager.saveContext(completion: () -&gt; ()) -&gt; ()"
+                  moduleName = "Pokemon"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/stevencurtis/Documents/Jobs2016/Developer/CV%202020/Applications/threesidedcube/3SCiOSTask/Pokemon/Pokemon/CoreData/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "105">
+               </Location>
+               <Location
+                  uuid = "9B415839-E8B4-4858-8997-41EE2C58A110 - 18a16c301d1c9dab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Pokemon.DataManager.saveContext(completion: () -&gt; ()) -&gt; ()"
+                  moduleName = "Pokemon"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/stevencurtis/Documents/Jobs2016/Developer/CV%202020/Applications/threesidedcube/3SCiOSTask/Pokemon/Pokemon/CoreData/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "173">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0486A007-3F34-43B9-8476-911191DB89E2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pokemon/Interface/Screens/Search/PokemonListViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "getData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

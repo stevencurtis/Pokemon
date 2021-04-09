@@ -1,14 +1,13 @@
 //
-//  PokemonTests.swift
+//  PokemonListViewModelTests.swift
 //  PokemonTests
 //
 //  Created by Steven Curtis on 09/04/2021.
 //
 
 import XCTest
-@testable import Pokemon
 
-class PokemonTests: XCTestCase {
+class PokemonListViewModelTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

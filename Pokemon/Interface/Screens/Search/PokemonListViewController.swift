@@ -1,5 +1,5 @@
 //
-//  SearchViewController.swift
+//  PokemonListViewController.swift
 //  Pokemon
 //
 //  Created by Steven Curtis on 09/04/2021.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class PokemonListViewController: UIViewController {
  
-    var viewModel: SearchViewModel
+    var viewModel: PokemonListViewModel
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,12 @@ class SearchViewController: UIViewController {
         self.view = view
     }
     
-    init(viewModel: SearchViewModel) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.getData()
+    }
+    
+    init(viewModel: PokemonListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
