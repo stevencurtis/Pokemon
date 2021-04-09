@@ -51,6 +51,7 @@
 		CA05716326208A3A00DE9043 /* SearchStorageServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA05716226208A3A00DE9043 /* SearchStorageServiceMock.swift */; };
 		CA05716926208EA000DE9043 /* PokemonDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA05716826208EA000DE9043 /* PokemonDetailTests.swift */; };
 		CA05717126208F0600DE9043 /* PokemonListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA05717026208F0600DE9043 /* PokemonListTests.swift */; };
+		CA057177262098B400DE9043 /* PokemonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA057176262098B400DE9043 /* PokemonTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		CA05716226208A3A00DE9043 /* SearchStorageServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStorageServiceMock.swift; sourceTree = "<group>"; };
 		CA05716826208EA000DE9043 /* PokemonDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailTests.swift; sourceTree = "<group>"; };
 		CA05717026208F0600DE9043 /* PokemonListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListTests.swift; sourceTree = "<group>"; };
+		CA057176262098B400DE9043 /* PokemonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 		CA05706126204EAD00DE9043 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				CA0571752620989E00DE9043 /* Components */,
 				CA0570CB262057FB00DE9043 /* Flows */,
 				CA05706226204EB500DE9043 /* Screens */,
 			);
@@ -418,6 +421,14 @@
 			name = ObjectTests;
 			sourceTree = "<group>";
 		};
+		CA0571752620989E00DE9043 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				CA057176262098B400DE9043 /* PokemonTableViewCell.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -574,6 +585,7 @@
 				CA0570CD2620580A00DE9043 /* SearchFlow.swift in Sources */,
 				CA0570DE2620596400DE9043 /* SearchInteractor.swift in Sources */,
 				CA0570F526205A8100DE9043 /* APIResponse.swift in Sources */,
+				CA057177262098B400DE9043 /* PokemonTableViewCell.swift in Sources */,
 				CA057070262050F900DE9043 /* PokemonListViewModel.swift in Sources */,
 				CA05701C26204C0000DE9043 /* Pokemon.xcdatamodeld in Sources */,
 				CA05701226204C0000DE9043 /* AppDelegate.swift in Sources */,

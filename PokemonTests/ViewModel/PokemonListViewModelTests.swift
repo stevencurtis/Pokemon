@@ -6,27 +6,92 @@
 //
 
 import XCTest
+import Combine
+@testable import Pokemon
 
 class PokemonListViewModelTests: XCTestCase {
+    var listViewModel: PokemonListViewModel!
+    var searchInteractor: SearchInteractorMock!
+    var searchFlow: SearchFlowMock!
+    private var cancellables: Set<AnyCancellable> = []
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override func setUp() {
+        super.setUp()
+        cancellables = []
+        searchInteractor = SearchInteractorMock()
+        searchFlow = SearchFlowMock()
+        listViewModel = PokemonListViewModel(searchInteractor: searchInteractor, flow: searchFlow)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testNoInitialPokemon() {
+        let expect = expectation(description: #function)
+        listViewModel.pokemonPublisher
+            .receive(on: DispatchQueue.main)
+            .sink {
+                XCTAssertEqual($0, [])
+                expect.fulfill()
+            }
+            .store(in: &cancellables)
+        waitForExpectations(timeout: 2.0)
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testGivePokemon() {
+        let expect = expectation(description: #function)
+        listViewModel.getData()
+        var count = 0
+        listViewModel.pokemonPublisher
+            .receive(on: DispatchQueue.main)
+            .sink {
+                count += 1
+                if count == 2 {
+                    XCTAssertEqual($0, [pokemonDetail])
+                    expect.fulfill()
+                }
+            }
+            .store(in: &cancellables)
+        wait(for: [expect], timeout: 1)
     }
+    
+    func testGivePokemonLoaded() {
+        // test that the loading indicator should start, then stop
+        let expect = expectation(description: #function)
+        var count = 0
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+        listViewModel.$shouldLoad
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: {
+                count += 1
+                if count == 2 {
+                    XCTAssertEqual($0, true)
+                    expect.fulfill()
+                } else {
+                    XCTAssertEqual($0, false)
+                }
+            }
+            )
+            .store(in: &cancellables)
+        listViewModel.getData()
+
+        wait(for: [expect], timeout: 1)
     }
-
+    
+    func testGivePokemonError() {
+        let expect = expectation(description: #function)
+        
+        var count = 0
+        
+        listViewModel.$shouldError
+            .sink(receiveValue:{
+                if count == 0 {
+                    XCTAssertEqual($0, false)
+                    expect.fulfill()
+                }
+                count += 1
+            }
+            )
+            .store(in: &cancellables)
+        listViewModel.getData()
+        
+        waitForExpectations(timeout: 2.0)
+    }
 }
