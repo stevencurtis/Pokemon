@@ -27,7 +27,7 @@ public protocol FlowRoutingServiceProtocol {
 
 public final class FlowRoutingService {
     public let navigationController: UINavigationController
-
+    
     public init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
@@ -37,14 +37,14 @@ extension FlowRoutingService: FlowRoutingServiceProtocol {
     public var rootViewController: UIViewController {
         return navigationController.viewControllers.first!
     }
-
+    
     public var visibleViewController: UIViewController {
         return navigationController.visibleViewController ?? navigationController.viewControllers.last!
     }
-
+    
     public func clearStackInBetween(left: UIViewController, right: UIViewController) {
-    let navigationController =
-        self.navigationController.visibleViewController?.navigationController ?? self.navigationController
+        let navigationController =
+            self.navigationController.visibleViewController?.navigationController ?? self.navigationController
         let currentStack = navigationController.viewControllers
         guard let leftIndex = currentStack.firstIndex(of: left),
               let rightIndex = currentStack.firstIndex(of: right),
@@ -53,7 +53,7 @@ extension FlowRoutingService: FlowRoutingServiceProtocol {
         let newStack = Array(currentStack.prefix(leftIndex + 1)) + [right]
         clearStackAndShowPushed(newStack)
     }
-
+    
     public func clearStackAndShowPushed(_ controllers: [UIViewController]) {
         if let visibleViewController = navigationController.visibleViewController {
             visibleViewController.navigationController?.setViewControllers(controllers, animated: true)
@@ -61,7 +61,7 @@ extension FlowRoutingService: FlowRoutingServiceProtocol {
             navigationController.setViewControllers(controllers, animated: false)
         }
     }
-
+    
     public func showPushed(_ controller: UIViewController) {
         if let visibleViewController = navigationController.visibleViewController {
             visibleViewController.navigationController?.pushViewController(
@@ -69,7 +69,7 @@ extension FlowRoutingService: FlowRoutingServiceProtocol {
                 animated: true
             )
         } else {
-                navigationController.pushViewController(controller, animated: false)
+            navigationController.pushViewController(controller, animated: false)
         }
     }
     public func clearLastAndShowPushed(_ controller: UIViewController) {
@@ -81,10 +81,10 @@ extension FlowRoutingService: FlowRoutingServiceProtocol {
             }
         }()
         guard let nvc = navigationController else { return }
-
+        
         nvc.setViewControllers(Array(nvc.viewControllers.dropLast()) + [controller], animated: true)
     }
-
+    
     public func jumpBack(to controller: UIViewController?) {
         if let controller = controller {
             if let topNav = visibleViewController.navigationController,
@@ -97,7 +97,7 @@ extension FlowRoutingService: FlowRoutingServiceProtocol {
             visibleViewController.navigationController?.popViewController(animated: true)
         }
     }
-
+    
     public func jumpBack(to controller: UIViewController, andPush next: UIViewController) {
         guard let nav = visibleViewController.navigationController,
               let index = nav.viewControllers.firstIndex(of: controller)
@@ -107,12 +107,12 @@ extension FlowRoutingService: FlowRoutingServiceProtocol {
         let stack = Array(nav.viewControllers.dropLast(nav.viewControllers.count - index - 1)) + [next]
         nav.setViewControllers(stack, animated: true)
     }
-
+    
     public func jumpBackToRoot() {
         let navigationController = visibleViewController.navigationController ?? self.navigationController
         navigationController.popToRootViewController(animated: true)
     }
-
+    
     public func replace(viewController: UIViewController, with controller: UIViewController) {
         guard
             let navigationController = visibleViewController.navigationController,
@@ -122,7 +122,7 @@ extension FlowRoutingService: FlowRoutingServiceProtocol {
         }
         navigationController.viewControllers[index] = controller
     }
-
+    
     public func showModel(
         _ controller: UIViewController,
         modelPresentationStyle: UIModalPresentationStyle?,

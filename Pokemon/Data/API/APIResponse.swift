@@ -10,7 +10,7 @@ import Foundation
 public enum ApiResponse<T> {
     case success(HTTPURLResponse, T)
     case failure(HTTPURLResponse?, ApiError)
-
+    
     public var result: Result<T, ApiError> {
         switch self {
         case .success(_, let value):

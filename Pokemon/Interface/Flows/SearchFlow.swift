@@ -9,6 +9,7 @@ import Foundation
 
 public protocol SearchFlowProtocol {
     func runFlow()
+    func showDetail(pokemon: PokemonDetail)
 }
 
 extension SearchFlowProtocol { }
@@ -38,5 +39,9 @@ extension SearchFlow: SearchFlowProtocol {
         router.showPushed(
             screenFactory.makeSearchScreen(flow: self)
         )
+    }
+    
+    func showDetail(pokemon: PokemonDetail) {
+        router.showPushed(screenFactory.makeDetailsScreen(pokemon: pokemon))
     }
 }

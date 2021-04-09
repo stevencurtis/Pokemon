@@ -8,5 +8,9 @@
 import Foundation
 
 class DetailViewModel {
-    init() {}
+    @Published var pokemon: PokemonDetail
+    
+    init(pokemon: PokemonDetail) {
+        self.pokemon = pokemon
+    }
 }

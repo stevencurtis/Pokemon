@@ -14,7 +14,7 @@ protocol SearchStorageServiceProtocol {
 
 final class SearchStorageService {
     private let dataManager: DataManager
-
+    
     init(dataManager: DataManager = DataManager()) {
         self.dataManager = dataManager
     }
@@ -30,5 +30,4 @@ extension SearchStorageService: SearchStorageServiceProtocol {
         dataManager.save(pokemon: pokemon)
     }
     
-
 }

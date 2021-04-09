@@ -18,14 +18,16 @@ class PokemonTableViewCell: UITableViewCell {
         
         self.contentView.addSubview(pokeImageView)
         self.contentView.addSubview(titleLabel)
+        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         pokeImageView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             pokeImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             pokeImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
             pokeImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             pokeImageView.widthAnchor.constraint(equalTo: pokeImageView.heightAnchor),
+            
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),

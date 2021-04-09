@@ -7,18 +7,19 @@
 
 import UIKit
 import Combine
+import SDWebImage
 
 class PokemonListViewController: UIViewController {
     enum Section: CaseIterable {
         case pokemon
     }
- 
+    
     var viewModel: PokemonListViewModel
     let searchController = UISearchController(searchResultsController: nil)
     let indicator: UIActivityIndicatorView = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
-
+    
     var dataSource: UITableViewDiffableDataSource<Section, PokemonDetail>!
-
+    
     lazy var tableView = UITableView()
     var cancellables = [AnyCancellable]()
     
@@ -27,12 +28,12 @@ class PokemonListViewController: UIViewController {
         currentSnapshot.deleteAllItems()
         currentSnapshot.appendSections([Section.pokemon])
         currentSnapshot.appendItems(viewModel.pokemon)
+        
         dataSource.apply(currentSnapshot, animatingDifferences: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         setupHierarchy()
         setupComponents()
@@ -40,7 +41,6 @@ class PokemonListViewController: UIViewController {
         setupBindings()
         
         viewModel.getData()
-
     }
     
     override func loadView() {
@@ -51,11 +51,11 @@ class PokemonListViewController: UIViewController {
     
     func setupBindings() {
         viewModel.pokemonPublisher
-           .receive(on: DispatchQueue.main)
-           .sink { [weak self] _ in
-            self?.applySnapshot()
-           }
-           .store(in: &cancellables)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.applySnapshot()
+            }
+            .store(in: &cancellables)
         
         viewModel.$shouldError
             .receive(on: DispatchQueue.main)
@@ -87,10 +87,10 @@ class PokemonListViewController: UIViewController {
         searchController.searchBar.delegate = self
         searchController.searchBar.keyboardType = .default
         searchController.searchBar.autocapitalizationType = .none
-
+        
         let placeholderAppearance = UILabel.appearance(whenContainedInInstancesOf: [UISearchBar.self])
         placeholderAppearance.font = .systemFont(ofSize: 16)
-
+        
         navigationController?.navigationBar.barTintColor = UIColor(named: "PrimaryColor")
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -99,18 +99,18 @@ class PokemonListViewController: UIViewController {
     func setupHierarchy() {
         view.addSubview(tableView)
     }
-
+    
     func setupComponents() {
         tableView.register(PokemonTableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .systemGray
-
+        
         tableView.rowHeight = 50
         
         tableView.delegate = self
         
         configureDataSource()
-
+        
         setupActivityIndicator()
         setupSearchController()
     }
@@ -125,7 +125,6 @@ class PokemonListViewController: UIViewController {
                     with: pokemon.name,
                     pictureURL: pokemon.images.first
                 )
-                
                 return cell
             }
             else {
@@ -167,13 +166,11 @@ class PokemonListViewController: UIViewController {
         )
     }
     
-    
-    
     init(viewModel: PokemonListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -182,7 +179,8 @@ class PokemonListViewController: UIViewController {
 extension PokemonListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let pokemon = dataSource.itemIdentifier(for: indexPath) {
-//            viewModel.moveDetail(with: pokemon)
+            SDWebImagePrefetcher.shared.prefetchURLs(pokemon.images.compactMap{URL(string: $0)})
+            viewModel.moveDetail(with: pokemon)
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
@@ -193,7 +191,7 @@ extension PokemonListViewController: UISearchBarDelegate {
     {
         self.viewModel.keyWordSearch = searchText
     }
-
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.viewModel.keyWordSearch = ""
     }

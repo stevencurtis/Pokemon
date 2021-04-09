@@ -25,11 +25,16 @@ class PokemonListViewModelTests: XCTestCase {
     
     func testNoInitialPokemon() {
         let expect = expectation(description: #function)
+        var count = 0
+
         listViewModel.pokemonPublisher
             .receive(on: DispatchQueue.main)
             .sink {
-                XCTAssertEqual($0, [])
-                expect.fulfill()
+                if count == 0 {
+                    XCTAssertEqual($0, [])
+                    expect.fulfill()
+                }
+                count += 1
             }
             .store(in: &cancellables)
         waitForExpectations(timeout: 2.0)
@@ -81,6 +86,7 @@ class PokemonListViewModelTests: XCTestCase {
         var count = 0
         
         listViewModel.$shouldError
+            .receive(on: DispatchQueue.main)
             .sink(receiveValue:{
                 if count == 0 {
                     XCTAssertEqual($0, false)

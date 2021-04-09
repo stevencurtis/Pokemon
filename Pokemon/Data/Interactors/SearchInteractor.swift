@@ -9,7 +9,7 @@ import Foundation
 
 protocol SearchInteractorProtocol {
     func getPokemon(completion: @escaping (Result<[PokemonDetail], Error>) -> Void)
-
+    
 }
 
 class SearchInteractor {
@@ -32,31 +32,31 @@ extension SearchInteractor: SearchInteractorProtocol {
         if !cachedPokemon.isEmpty {
             completion(.success(cachedPokemon))
         } else {
-        searchRepository.getPokemonList(completion: { result in
-            switch result {
-            case .success(let pokemonList):
-                for pokemon in pokemonList {
-                    dispatchGroup.enter()
-                    self.searchRepository.getPokemonDetail(url: pokemon.url, completion: { detailResult in
-                        switch detailResult {
-                        case .success(let detail):
-                            pokemonArray.append(detail)
-                            dispatchGroup.leave()
-                        case .failure:
-                            break
-                        }
-                    })
+            searchRepository.getPokemonList(completion: { result in
+                switch result {
+                case .success(let pokemonList):
+                    for pokemon in pokemonList {
+                        dispatchGroup.enter()
+                        self.searchRepository.getPokemonDetail(url: pokemon.url, completion: { detailResult in
+                            switch detailResult {
+                            case .success(let detail):
+                                pokemonArray.append(detail)
+                                dispatchGroup.leave()
+                            case .failure:
+                                break
+                            }
+                        })
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
                 }
-            case .failure(let error):
-                completion(.failure(error))
+                
+                dispatchGroup.notify(queue: .main, execute: {
+                    completion(.success(pokemonArray))
+                })
             }
-
-            dispatchGroup.notify(queue: .main, execute: {
-                completion(.success(pokemonArray))
-            })
+            )
         }
-        )
-        }
-
+        
     }
 }

@@ -35,7 +35,11 @@ extension SearchApiService: SearchApiServiceProtocol {
                 let decoder = JSONDecoder()
                 if let decoded = try? decoder.decode(PokemonListAPIDto.self, from: res) {
                     completion(.success(.init(), decoded))
+                } else {
+                    completion(.failure(.init(), .generic))
                 }
+            } else {
+                completion(.failure(.init(), .generic))
             }
         }
         )
@@ -48,7 +52,11 @@ extension SearchApiService: SearchApiServiceProtocol {
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 if let decoded = try? decoder.decode(PokemonDetailAPIDto.self, from: res) {
                     completion(.success(.init(), decoded))
+                } else {
+                    completion(.failure(.init(), .generic))
                 }
+            } else {
+                completion(.failure(.init(), .generic))
             }
         }
         )

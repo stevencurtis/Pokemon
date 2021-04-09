@@ -40,5 +40,12 @@ class SearchFlowTests: XCTestCase {
         XCTAssertEqual((screenFactory as! SearchFlowScreenFactoryMocked).madeSearchScreen, true)
         XCTAssertEqual((screenFactory as! SearchFlowScreenFactoryMocked).madeDetailScreen, false)
     }
+    
+    func testShowDetails() {
+        searchFlow.showDetail(pokemon: pokemonDetail)
+        XCTAssertEqual((router as! FlowRoutingServiceMocked).pushed, true)
+        XCTAssertEqual((screenFactory as! SearchFlowScreenFactoryMocked).madeSearchScreen, false)
+        XCTAssertEqual((screenFactory as! SearchFlowScreenFactoryMocked).madeDetailScreen, true)
+    }
 }
 

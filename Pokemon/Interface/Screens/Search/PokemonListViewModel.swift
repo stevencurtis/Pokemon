@@ -21,7 +21,7 @@ class PokemonListViewModel {
     
     var downloadedPokemon: [PokemonDetail] = []
     var cancellables: Set<AnyCancellable> = []
-
+    
     init(
         searchInteractor: SearchInteractorProtocol = SearchInteractor(),
         flow: SearchFlowProtocol
@@ -54,4 +54,7 @@ class PokemonListViewModel {
         })
     }
     
+    func moveDetail(with pokemon: PokemonDetail) {
+        flow.showDetail(pokemon: pokemon)
+    }
 }

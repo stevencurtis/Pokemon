@@ -9,4 +9,5 @@ import UIKit
 
 public protocol SearchFlowScreenFactoryProtocol {
     func makeSearchScreen(flow: SearchFlowProtocol) -> UIViewController
+    func makeDetailsScreen(pokemon: PokemonDetail) -> UIViewController
 }
