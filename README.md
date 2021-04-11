@@ -1,6 +1,6 @@
 # Pokemon
 
-1[Images/screenshot.png](Images/screenshot.png)<br>
+![Images/screenshot.png](Images/screenshot.png)<br>
 ![Images/vid.gif](Images/vid.gif)<br>
 
 ## Criteria
