@@ -9,12 +9,12 @@ import Foundation
 
 protocol SearchInteractorProtocol {
     func getPokemon(completion: @escaping (Result<[PokemonDetail], Error>) -> Void)
-    
+
 }
 
 class SearchInteractor {
     private let searchRepository: SearchRepositoryProtocol
-    
+
     init(
         searchRepository: SearchRepositoryProtocol = SearchRepository()
     ) {
@@ -24,10 +24,10 @@ class SearchInteractor {
 
 extension SearchInteractor: SearchInteractorProtocol {
     func getPokemon(completion: @escaping (Result<[PokemonDetail], Error>) -> Void) {
-        
+
         let dispatchGroup = DispatchGroup()
         var pokemonArray: [PokemonDetail] = []
-        
+
         let cachedPokemon = searchRepository.getCachedPokemon()
         if !cachedPokemon.isEmpty {
             completion(.success(cachedPokemon))
@@ -50,13 +50,13 @@ extension SearchInteractor: SearchInteractorProtocol {
                 case .failure(let error):
                     completion(.failure(error))
                 }
-                
+
                 dispatchGroup.notify(queue: .main, execute: {
                     completion(.success(pokemonArray))
                 })
             }
             )
         }
-        
+
     }
 }

@@ -12,9 +12,9 @@ class SearchInteractorTests: XCTestCase {
 
     var searchRepository: SearchRepositoryProtocol!
     var searchInteractor: SearchInteractor!
-    
+
     override func setUpWithError() throws { }
-    
+
     override func setUp() {
         searchRepository = SearchRepository(apiService: SearchApiServiceMock(), storageService: SearchStorageServiceMock())
         searchInteractor = SearchInteractor(searchRepository: searchRepository)

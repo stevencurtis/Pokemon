@@ -12,7 +12,7 @@ class PokemonListTests: XCTestCase {
     func testDecodeList() {
         XCTAssertNoThrow(try JSONDecoder().decode(PokemonListAPIDto.self, from: pokeList.data(using: .utf8)!))
     }
-    
+
     func testMapList() {
         let dto = try? JSONDecoder().decode(PokemonListAPIDto.self, from: pokeList.data(using: .utf8)!)
         XCTAssertEqual(dto?.toDomain(), pokemonList)

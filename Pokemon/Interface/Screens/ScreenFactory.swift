@@ -15,7 +15,7 @@ extension ScreenFactory: SearchFlowScreenFactoryProtocol {
         let viewController = DetailViewController(viewModel: viewModel)
         return viewController
     }
-    
+
     func makeSearchScreen(flow: SearchFlowProtocol) -> UIViewController {
         let viewModel = PokemonListViewModel(flow: flow)
         let viewController = PokemonListViewController(viewModel: viewModel)

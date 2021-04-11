@@ -25,10 +25,10 @@ extension DBPokemonDetail {
             name: name,
             id: id.intValue,
             images: images,
-            stats:  (try? JSONDecoder().decode([PokemonDetailStoreDto.StatStoreDto].self, from: stats)) ?? []
+            stats: (try? JSONDecoder().decode([PokemonDetailStoreDto.StatStoreDto].self, from: stats)) ?? []
         )
     }
-    
+
     func update(from dto: PokemonDetailStoreDto) {
         name = dto.name
         id = NSNumber(value: dto.id)

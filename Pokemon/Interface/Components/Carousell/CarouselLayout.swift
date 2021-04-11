@@ -16,23 +16,22 @@ final class CarouselLayout: UICollectionViewFlowLayout {
         self.sectionInset = .zero
         self.estimatedItemSize = .zero
     }
-    
+
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func prepare() {
         super.prepare()
         if let collectionView = collectionView {
             itemSize = collectionView.frame.size
         }
     }
-    
+
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         guard itemSize != newBounds.size else { return false }
         itemSize = newBounds.size
         return true
     }
 }
-

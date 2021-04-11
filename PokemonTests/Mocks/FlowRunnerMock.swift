@@ -11,4 +11,3 @@ import Foundation
 class FlowRunnerMock: FlowRunnerProtocol {
     func runSearchFlow(router: FlowRoutingServiceProtocol) {}
 }
-

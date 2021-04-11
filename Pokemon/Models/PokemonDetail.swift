@@ -26,19 +26,19 @@ struct PokemonDetailAPIDto: Decodable {
         let baseStat: Int
         let effort: Int
         let stat: Stat
-        
+
         struct Stat: Decodable {
             let name: String
             let url: String
         }
     }
-    
+
     func toDomain() -> PokemonDetail {
         return .init(
             name: name,
             id: id,
-            images: [sprites.frontDefault, sprites.backDefault, sprites.backFemale, sprites.backShiny, sprites.backShinyFemale, sprites.frontFemale, sprites.frontShiny, sprites.frontShinyFemale].compactMap{ $0 },
-            stats: stats.map{ PokemonDetail.Stat(name: $0.stat.name, base: $0.baseStat)  }
+            images: [sprites.frontDefault, sprites.backDefault, sprites.backFemale, sprites.backShiny, sprites.backShinyFemale, sprites.frontFemale, sprites.frontShiny, sprites.frontShinyFemale].compactMap { $0 },
+            stats: stats.map { PokemonDetail.Stat(name: $0.stat.name, base: $0.baseStat)  }
         )
     }
 }
@@ -57,7 +57,6 @@ public struct PokemonDetail: Equatable {
 extension PokemonDetail: Hashable {}
 extension PokemonDetail.Stat: Hashable {}
 
-
 public struct PokemonDetailStoreDto: Codable, Equatable {
     let name: String
     let id: Int
@@ -66,18 +65,18 @@ public struct PokemonDetailStoreDto: Codable, Equatable {
     struct StatStoreDto: Codable, Equatable {
         let name: String
         let base: Int
-        
+
         func toDomain() -> PokemonDetail.Stat {
             return .init(name: name, base: base)
         }
     }
-    
+
     func toDomain() -> PokemonDetail {
         return .init(
             name: name,
             id: id,
             images: images,
-            stats: stats.map{ $0.toDomain() }
+            stats: stats.map { $0.toDomain() }
         )
     }
 }

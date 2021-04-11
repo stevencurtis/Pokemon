@@ -26,7 +26,7 @@ class FlowRoutingServiceMock: FlowRoutingServiceProtocol {
     func showModel(_ controller: UIViewController, modelPresentationStyle: UIModalPresentationStyle?, closeHandler: (() -> Void)?) {}
     var pushed = false
     var pushedDescription: String = ""
-    
+
 }
 
 protocol FlowRoutingServiceMocked {
@@ -34,4 +34,3 @@ protocol FlowRoutingServiceMocked {
 }
 
 extension FlowRoutingServiceMock: FlowRoutingServiceMocked {}
-

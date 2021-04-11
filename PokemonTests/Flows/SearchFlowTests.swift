@@ -17,7 +17,7 @@ class SearchFlowTests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-    
+
     override func setUp() {
         router = FlowRoutingServiceMock()
         screenFactory = SearchFlowScreenFactoryMock()
@@ -40,7 +40,7 @@ class SearchFlowTests: XCTestCase {
         XCTAssertEqual((screenFactory as! SearchFlowScreenFactoryMocked).madeSearchScreen, true)
         XCTAssertEqual((screenFactory as! SearchFlowScreenFactoryMocked).madeDetailScreen, false)
     }
-    
+
     func testShowDetails() {
         searchFlow.showDetail(pokemon: pokemonDetail)
         XCTAssertEqual((router as! FlowRoutingServiceMocked).pushed, true)
@@ -48,4 +48,3 @@ class SearchFlowTests: XCTestCase {
         XCTAssertEqual((screenFactory as! SearchFlowScreenFactoryMocked).madeDetailScreen, true)
     }
 }
-

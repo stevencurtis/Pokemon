@@ -14,7 +14,7 @@ class PokemonDetailTests: XCTestCase {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         XCTAssertNoThrow(try decoder.decode(PokemonDetailAPIDto.self, from: ivysaur.data(using: .utf8)!))
     }
-    
+
     func testMapList() {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase

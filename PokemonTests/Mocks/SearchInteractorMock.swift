@@ -13,4 +13,3 @@ class SearchInteractorMock: SearchInteractorProtocol {
         completion(.success([pokemonDetail]))
     }
 }
-

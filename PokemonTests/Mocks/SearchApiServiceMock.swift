@@ -13,7 +13,7 @@ class SearchApiServiceMock: SearchApiServiceProtocol {
         let dto = (try? JSONDecoder().decode(PokemonListAPIDto.self, from: pokeList.data(using: .utf8)!))!
         completion(.success(.init(), dto))
     }
-    
+
     func requestPokemonDetail(url: String, completion: @escaping (ApiResponse<PokemonDetailAPIDto>) -> Void) {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -21,4 +21,3 @@ class SearchApiServiceMock: SearchApiServiceProtocol {
         completion(.success(.init(), dto))
     }
 }
-

@@ -14,7 +14,7 @@ protocol SearchStorageServiceProtocol {
 
 final class SearchStorageService {
     private let dataManager: DataManager
-    
+
     init(dataManager: DataManager = DataManager()) {
         self.dataManager = dataManager
     }
@@ -25,9 +25,9 @@ extension SearchStorageService: SearchStorageServiceProtocol {
         let pokemon = try? dataManager.getPokemon()
         return pokemon ?? []
     }
-    
+
     func persist(pokemon: PokemonDetailStoreDto) {
         dataManager.save(pokemon: pokemon)
     }
-    
+
 }

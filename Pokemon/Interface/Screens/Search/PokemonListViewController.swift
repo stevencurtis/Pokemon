@@ -13,50 +13,50 @@ class PokemonListViewController: UIViewController {
     enum Section: CaseIterable {
         case pokemon
     }
-    
+
     var viewModel: PokemonListViewModel
     let searchController = UISearchController(searchResultsController: nil)
     let indicator: UIActivityIndicatorView = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
-    
+
     var dataSource: UITableViewDiffableDataSource<Section, PokemonDetail>!
-    
+
     lazy var tableView = UITableView()
     var cancellables = [AnyCancellable]()
-    
-    func applySnapshot() {
+
+    private func applySnapshot() {
         var currentSnapshot = dataSource.snapshot()
         currentSnapshot.deleteAllItems()
         currentSnapshot.appendSections([Section.pokemon])
         currentSnapshot.appendItems(viewModel.pokemon)
-        
+
         dataSource.apply(currentSnapshot, animatingDifferences: true)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupHierarchy()
         setupComponents()
         setupConstraints()
         setupBindings()
-        
+
         viewModel.getData()
     }
-    
+
     override func loadView() {
         let view = UIView()
         view.backgroundColor = .systemBackground
         self.view = view
     }
-    
-    func setupBindings() {
+
+    private func setupBindings() {
         viewModel.pokemonPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.applySnapshot()
             }
             .store(in: &cancellables)
-        
+
         viewModel.$shouldError
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] in
@@ -66,10 +66,10 @@ class PokemonListViewController: UIViewController {
             }
             )
             .store(in: &cancellables)
-        
+
         viewModel.$shouldLoad
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue:{ [weak self] in
+            .sink(receiveValue: { [weak self] in
                 if $0 {
                     self?.indicator.startAnimating()
                 } else {
@@ -79,43 +79,43 @@ class PokemonListViewController: UIViewController {
             )
             .store(in: &cancellables)
     }
-    
-    func setupSearchController() {
+
+    private func setupSearchController() {
         searchController.searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchController.searchBar.placeholder = "Search for a Pokemon"
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
         searchController.searchBar.keyboardType = .default
         searchController.searchBar.autocapitalizationType = .none
-        
+
         let placeholderAppearance = UILabel.appearance(whenContainedInInstancesOf: [UISearchBar.self])
         placeholderAppearance.font = .systemFont(ofSize: 16)
-        
+
         navigationController?.navigationBar.barTintColor = UIColor(named: "PrimaryColor")
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
     }
-    
-    func setupHierarchy() {
+
+    private func setupHierarchy() {
         view.addSubview(tableView)
     }
-    
-    func setupComponents() {
+
+    private func setupComponents() {
         tableView.register(PokemonTableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .systemGray
-        
+
         tableView.rowHeight = 50
-        
+
         tableView.delegate = self
-        
+
         configureDataSource()
-        
+
         setupActivityIndicator()
         setupSearchController()
     }
-    
-    func configureDataSource() {
+
+    private func configureDataSource() {
         dataSource = .init(tableView: tableView, cellProvider: { tableView, indexPath, pokemon in
             if let cell = tableView.dequeueReusableCell(
                 withIdentifier: "Cell",
@@ -126,21 +126,20 @@ class PokemonListViewController: UIViewController {
                     pictureURL: pokemon.images.first
                 )
                 return cell
-            }
-            else {
+            } else {
                 fatalError()
             }
         })
     }
-    
-    func setupActivityIndicator() {
+
+    private func setupActivityIndicator() {
         self.view.addSubview(indicator)
         indicator.hidesWhenStopped = true
         indicator.startAnimating()
         indicator.translatesAutoresizingMaskIntoConstraints = false
     }
-    
-    func setupConstraints() {
+
+    private func setupConstraints() {
         NSLayoutConstraint.activate(
             [
                 tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -153,11 +152,11 @@ class PokemonListViewController: UIViewController {
                 indicator.trailingAnchor.constraint(equalTo: view.trailingAnchor)
             ])
     }
-    
-    func displayAlert() {
+
+    private func displayAlert() {
         DispatchQueue.main.async(execute: {
             let alert = UIAlertController(title: "Something went wrong!", message: "Press OK to continue", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { _ in
                 self.viewModel.getData()
             })
             alert.addAction(ok)
@@ -165,12 +164,12 @@ class PokemonListViewController: UIViewController {
         }
         )
     }
-    
+
     init(viewModel: PokemonListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -179,7 +178,7 @@ class PokemonListViewController: UIViewController {
 extension PokemonListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let pokemon = dataSource.itemIdentifier(for: indexPath) {
-            SDWebImagePrefetcher.shared.prefetchURLs(pokemon.images.compactMap{URL(string: $0)})
+            SDWebImagePrefetcher.shared.prefetchURLs(pokemon.images.compactMap {URL(string: $0)})
             viewModel.moveDetail(with: pokemon)
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -187,11 +186,10 @@ extension PokemonListViewController: UITableViewDelegate {
 }
 
 extension PokemonListViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
-    {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.viewModel.keyWordSearch = searchText
     }
-    
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.viewModel.keyWordSearch = ""
     }

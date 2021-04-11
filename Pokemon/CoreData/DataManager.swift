@@ -20,7 +20,7 @@ final class DataManager: DataManagerProtocol {
         self.managedObjectContext = objectContext
         self.entity = entity
     }
-    
+
     required init() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         managedObjectContext = appDelegate.persistentContainer.viewContext
@@ -32,7 +32,7 @@ final class DataManager: DataManagerProtocol {
             entity = entityDescription
         }
     }
-    
+
     func getPokemon() throws -> [PokemonDetailStoreDto] {
         let fetchRequest = NSFetchRequest<DBPokemonDetail>(entityName: DBPokemonDetail.entityName)
         let pokemon: [DBPokemonDetail]
@@ -45,7 +45,7 @@ final class DataManager: DataManagerProtocol {
         return pokemon.map {$0.toDto()}
 
     }
-    
+
     func save(pokemon: PokemonDetailStoreDto) {
         managedObjectContext.perform {
             let object = DBPokemonDetail(entity: self.entity, insertInto: self.managedObjectContext)
@@ -53,9 +53,8 @@ final class DataManager: DataManagerProtocol {
             self.saveContext(completion: {})
         }
     }
-    
-    
-    func saveContext(completion: @escaping () -> Void) {
+
+    private func saveContext(completion: @escaping () -> Void) {
         managedObjectContext.perform {
             do {
                 try self.managedObjectContext.save()
@@ -66,4 +65,3 @@ final class DataManager: DataManagerProtocol {
         }
     }
 }
-

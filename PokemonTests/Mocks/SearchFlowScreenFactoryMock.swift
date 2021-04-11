@@ -15,7 +15,7 @@ class SearchFlowScreenFactoryMock: SearchFlowScreenFactoryProtocol {
         madeSearchScreen = true
         return UIViewController()
     }
-    
+
     func makeDetailsScreen(pokemon: PokemonDetail) -> UIViewController {
         madeDetailScreen = true
         return UIViewController()
@@ -27,5 +27,4 @@ protocol SearchFlowScreenFactoryMocked {
     var madeDetailScreen: Bool { get }
 }
 
-extension SearchFlowScreenFactoryMock: SearchFlowScreenFactoryMocked{}
-
+extension SearchFlowScreenFactoryMock: SearchFlowScreenFactoryMocked {}

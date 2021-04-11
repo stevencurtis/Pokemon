@@ -10,10 +10,9 @@ import Foundation
 
 class SearchStorageServiceMock: SearchStorageServiceProtocol {
     func persist(pokemon: PokemonDetailStoreDto) { }
-    
+
     func getPokemon() -> [PokemonDetailStoreDto] {
         return []
     }
-    
-    
+
 }

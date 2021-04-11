@@ -1,5 +1,8 @@
 # Pokemon
 
+1[Images/screenshot.png](Images/screenshot.png)<br>
+![Images/vid.gif](Images/vid.gif)<br>
+
 ## Criteria
 * Use Swift, Xcode and the iOS Emulator
 * Search Pokemon list
@@ -42,6 +45,11 @@ This solution uses a `UITableView` with loading indicator, before displaying the
 ## Documentation
 The vast majority of the code is considered to be self-documenting. I've used a number of frameworks, detailed in the references section below.
 
+This architecture uses Combine to link the view model and view controller instances within the Application. 
+
+The architecture used within the application is described using the following diagram:
+![Images/architecture.png](Images/architecture.png)<br>
+
 ## Overall solution
 The solution is stable, does not crash and has been tested. The Pokemon are stored in Core Data, so the App is functional without an Internet connection (if there is no Internet connection on first boot, the user is informed).
 
@@ -52,3 +60,4 @@ This solution uses:
 * My network manager [https://github.com/stevencurtis/NetworkManager](https://github.com/stevencurtis/NetworkManager)
 * SDWebImage [https://github.com/SDWebImage/SDWebImage](https://github.com/SDWebImage/SDWebImage)
 
+I have also used SwiftLint for the development of this project.

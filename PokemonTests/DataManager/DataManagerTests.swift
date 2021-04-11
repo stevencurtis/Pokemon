@@ -9,9 +9,8 @@ import XCTest
 import CoreData
 @testable import Pokemon
 
-
 class DataManagerTests: XCTestCase {
-    
+
     var storeCordinator: NSPersistentStoreCoordinator!
     var managedObjectModel: NSManagedObjectModel!
     var store: NSPersistentStore!
@@ -26,7 +25,7 @@ class DataManagerTests: XCTestCase {
             XCTFail("Failed to create a persistent store, \(error)")
         }
     }
-    
+
     func testGetPairsError() {
         let managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = storeCordinator

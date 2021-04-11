@@ -22,7 +22,7 @@ class PokemonListViewModelTests: XCTestCase {
         searchFlow = SearchFlowMock()
         listViewModel = PokemonListViewModel(searchInteractor: searchInteractor, flow: searchFlow)
     }
-    
+
     func testNoInitialPokemon() {
         let expect = expectation(description: #function)
         var count = 0
@@ -39,7 +39,7 @@ class PokemonListViewModelTests: XCTestCase {
             .store(in: &cancellables)
         waitForExpectations(timeout: 2.0)
     }
-    
+
     func testGivePokemon() {
         let expect = expectation(description: #function)
         listViewModel.getData()
@@ -56,7 +56,7 @@ class PokemonListViewModelTests: XCTestCase {
             .store(in: &cancellables)
         wait(for: [expect], timeout: 1)
     }
-    
+
     func testGivePokemonLoaded() {
         // test that the loading indicator should start, then stop
         let expect = expectation(description: #function)
@@ -79,15 +79,15 @@ class PokemonListViewModelTests: XCTestCase {
 
         wait(for: [expect], timeout: 1)
     }
-    
+
     func testGivePokemonError() {
         let expect = expectation(description: #function)
-        
+
         var count = 0
-        
+
         listViewModel.$shouldError
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue:{
+            .sink(receiveValue: {
                 if count == 0 {
                     XCTAssertEqual($0, false)
                     expect.fulfill()
@@ -97,7 +97,7 @@ class PokemonListViewModelTests: XCTestCase {
             )
             .store(in: &cancellables)
         listViewModel.getData()
-        
+
         waitForExpectations(timeout: 2.0)
     }
 }

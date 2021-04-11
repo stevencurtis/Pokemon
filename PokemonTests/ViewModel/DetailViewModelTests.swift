@@ -16,10 +16,10 @@ class DetailViewModelTests: XCTestCase {
     override func setUpWithError() throws {
         detailViewModel = DetailViewModel(pokemon: pokemonDetail)
     }
-    
+
     func testupdatePublisher() {
         let expect = expectation(description: #function)
-        
+
         detailViewModel.$pokemon
             .sink {
                 XCTAssertEqual($0, pokemonDetail)

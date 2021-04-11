@@ -18,7 +18,7 @@ final class SearchFlow {
     private let router: FlowRoutingServiceProtocol
     private let screenFactory: SearchFlowScreenFactoryProtocol
     private let flowRunner: FlowRunnerProtocol
-    
+
     init(
         router: FlowRoutingServiceProtocol,
         screenFactory: SearchFlowScreenFactoryProtocol = ScreenFactory(),
@@ -34,13 +34,13 @@ extension SearchFlow: SearchFlowProtocol {
     func runFlow() {
         showListScreen()
     }
-    
+
     private func showListScreen() {
         router.showPushed(
             screenFactory.makeSearchScreen(flow: self)
         )
     }
-    
+
     func showDetail(pokemon: PokemonDetail) {
         router.showPushed(screenFactory.makeDetailsScreen(pokemon: pokemon))
     }

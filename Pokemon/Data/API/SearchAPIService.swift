@@ -8,7 +8,6 @@
 import Foundation
 import NetworkLibrary
 
-
 protocol SearchApiServiceProtocol {
     func requestPokemonList(completion: @escaping (ApiResponse<PokemonListAPIDto>) -> Void)
     func requestPokemonDetail(url: String, completion: @escaping (ApiResponse<PokemonDetailAPIDto>) -> Void)
@@ -16,11 +15,11 @@ protocol SearchApiServiceProtocol {
 
 final class SearchApiService {
     private var anyNetworkManager: AnyNetworkManager<URLSession>?
-    
+
     init() {
         self.anyNetworkManager = AnyNetworkManager()
     }
-    
+
     init<T: NetworkManagerProtocol> (
         networkManager: T
     ) {
@@ -44,7 +43,7 @@ extension SearchApiService: SearchApiServiceProtocol {
         }
         )
     }
-    
+
     func requestPokemonDetail(url: String, completion: @escaping (ApiResponse<PokemonDetailAPIDto>) -> Void) {
         anyNetworkManager?.fetch(url: URL(string: url)!, method: .get(headers: [:]), completionBlock: {result in
             if let res = try? result.get() {

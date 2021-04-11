@@ -11,14 +11,14 @@ struct PokemonListAPIDto: Decodable {
     let count: Int
     let next: String
     let results: [PokemonListAPIDto.PokemonIndividual]
-    
+
     struct PokemonIndividual: Decodable {
         let name: String
         let url: String
     }
-    
+
     func toDomain() -> [PokemonList] {
-        return results.map{ PokemonList(name: $0.name, url: $0.url) }
+        return results.map { PokemonList(name: $0.name, url: $0.url) }
     }
 }
 
