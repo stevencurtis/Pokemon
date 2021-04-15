@@ -14,7 +14,9 @@ class Carousel: UIView {
         collectionViewLayout: CarouselLayout()
     )
 
-    var urls: [URL] = []
+    private var urls: [URL] = []
+    private var timer: Timer?
+    private var selectedIndex: Int = 0
 
     public init(frame: CGRect, urls: [URL]) {
         self.urls = urls
@@ -75,8 +77,6 @@ class Carousel: UIView {
         )
     }
 
-    var selectedIndex: Int = 0
-
     private func selectNext() {
         selectItem(at: selectedIndex + 1)
     }
@@ -88,15 +88,6 @@ class Carousel: UIView {
         collectionView.scrollToItem(at: IndexPath(item: selectedIndex, section: 0), at: .centeredHorizontally, animated: true)
     }
 
-    private var timer: Timer?
-}
-
-extension Carousel: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = UIScreen.main.bounds.size.width
-        let cellHeight = self.frame.height
-        return CGSize(width: cellWidth, height: cellHeight)
-    }
 }
 
 extension Carousel: UICollectionViewDelegate {}

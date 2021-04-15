@@ -9,8 +9,8 @@ import Foundation
 import Combine
 
 class PokemonListViewModel {
-    let searchInteractor: SearchInteractorProtocol
-    let flow: SearchFlowProtocol
+    private let searchInteractor: SearchInteractorProtocol
+    private let flow: SearchFlowProtocol
 
     var pokemonPublisher: Published<[PokemonDetail]>.Publisher { $pokemon }
 
@@ -19,8 +19,8 @@ class PokemonListViewModel {
     @Published var shouldLoad: Bool = false
     @Published var shouldError: Bool = false
 
-    var downloadedPokemon: [PokemonDetail] = []
-    var cancellables: Set<AnyCancellable> = []
+    private var downloadedPokemon: [PokemonDetail] = []
+    private var cancellables: Set<AnyCancellable> = []
 
     init(
         searchInteractor: SearchInteractorProtocol = SearchInteractor(),
