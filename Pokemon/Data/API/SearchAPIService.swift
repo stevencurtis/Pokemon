@@ -29,7 +29,11 @@ final class SearchApiService {
 
 extension SearchApiService: SearchApiServiceProtocol {
     func requestPokemonList(completion: @escaping (ApiResponse<PokemonListAPIDto>) -> Void) {
-        anyNetworkManager?.fetch(url: URL(string: "https://pokeapi.co/api/v2/pokemon/")!, method: .get(headers: [:]), completionBlock: {result in
+        guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon/") else {
+            completion(.failure(.init(), .generic))
+            return
+        }
+        anyNetworkManager?.fetch(url: url, method: .get(headers: [:]), completionBlock: {result in
             if let res = try? result.get() {
                 let decoder = JSONDecoder()
                 if let decoded = try? decoder.decode(PokemonListAPIDto.self, from: res) {
