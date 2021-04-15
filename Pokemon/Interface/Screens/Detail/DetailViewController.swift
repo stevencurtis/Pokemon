@@ -13,13 +13,13 @@ class DetailViewController: UIViewController {
         static let padding: CGFloat = 5
     }
 
-    var viewModel: DetailViewModel
-    var cancellables = [AnyCancellable]()
+    private var viewModel: DetailViewModel
+    private var cancellables = [AnyCancellable]()
 
-    lazy var label = UILabel()
-    lazy var stackView = UIStackView()
-    lazy var statsTextView = UITextView()
-    lazy var carousel = Carousel(frame: .zero)
+    lazy private var label = UILabel()
+    lazy private var stackView = UIStackView()
+    lazy private var statsTextView = UITextView()
+    lazy private var carousel = Carousel(frame: .zero)
 
     override func viewDidLoad() {
         super.viewDidLoad()

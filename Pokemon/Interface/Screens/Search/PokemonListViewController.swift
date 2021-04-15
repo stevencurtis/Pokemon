@@ -14,14 +14,14 @@ class PokemonListViewController: UIViewController {
         case pokemon
     }
 
-    var viewModel: PokemonListViewModel
-    let searchController = UISearchController(searchResultsController: nil)
-    let indicator: UIActivityIndicatorView = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
+    private var viewModel: PokemonListViewModel
+    private let searchController = UISearchController(searchResultsController: nil)
+    private let indicator: UIActivityIndicatorView = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
 
-    var dataSource: UITableViewDiffableDataSource<Section, PokemonDetail>!
+    private var dataSource: UITableViewDiffableDataSource<Section, PokemonDetail>!
 
-    lazy var tableView = UITableView()
-    var cancellables = [AnyCancellable]()
+    private lazy var tableView = UITableView()
+    private var cancellables = [AnyCancellable]()
 
     private func applySnapshot() {
         var currentSnapshot = dataSource.snapshot()
