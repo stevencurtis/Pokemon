@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
     lazy var label = UILabel()
     lazy var stackView = UIStackView()
     lazy var statsTextView = UITextView()
-    lazy var carousel = Carousel(frame: .zero, urls: [URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/2.png")!, URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/3.png")!])
+    lazy var carousel = Carousel(frame: .zero)
 
     override func viewDidLoad() {
         super.viewDidLoad()
