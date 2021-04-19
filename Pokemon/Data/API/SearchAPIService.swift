@@ -49,7 +49,11 @@ extension SearchApiService: SearchApiServiceProtocol {
     }
 
     func requestPokemonDetail(url: String, completion: @escaping (ApiResponse<PokemonDetailAPIDto>) -> Void) {
-        anyNetworkManager?.fetch(url: URL(string: url)!, method: .get(headers: [:]), completionBlock: {result in
+        guard let url = URL(string: url) else {
+            completion(.failure(.init(), .generic))
+            return
+        }
+        anyNetworkManager?.fetch(url: url, method: .get(headers: [:]), completionBlock: {result in
             if let res = try? result.get() {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
